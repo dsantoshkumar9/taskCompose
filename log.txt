@@ -1,0 +1,45 @@
+➜  taskCompose git:(main) ✗ docker compose up
+service "web" refers to undefined network my-network: invalid compose project
+➜  taskCompose git:(main) ✗ docker compose up
+[+] Building 20.0s (12/12) FINISHED                                                    docker:desktop-linux
+ => [web internal] load build definition from Dockerfile                                               0.0s
+ => => transferring dockerfile: 289B                                                                   0.0s
+ => [web internal] load metadata for docker.io/library/node:20.11.1-alpine                             4.5s
+ => [web auth] library/node:pull token for registry-1.docker.io                                        0.0s
+ => [web internal] load .dockerignore                                                                  0.0s
+ => => transferring context: 2B                                                                        0.0s
+ => [web 1/6] FROM docker.io/library/node:20.11.1-alpine@sha256:c0a3badbd8a0a760de903e00cedbca94588e6  0.0s
+ => [web internal] load build context                                                                  0.0s
+ => => transferring context: 6.28kB                                                                    0.0s
+ => CACHED [web 2/6] WORKDIR /app                                                                      0.0s
+ => [web 3/6] COPY . /app                                                                              0.0s
+ => [web 4/6] RUN npm install -g nodemon                                                               5.5s
+ => [web 5/6] RUN npm install express                                                                  6.9s
+ => [web 6/6] RUN npm install fs                                                                       2.9s
+ => [web] exporting to image                                                                           0.1s
+ => => exporting layers                                                                                0.1s
+ => => writing image sha256:38cd453c494733572cb6b90aae946cee9f360f044689e585d11504483cf3a1d6           0.0s
+ => => naming to docker.io/library/taskcompose-web                                                     0.0s
+[+] Running 3/3
+ ✔ Network taskcompose_my-network  Created                                                             0.0s 
+ ✔ Volume "taskcompose_wow"        Created                                                             0.0s 
+ ✔ Container taskcompose-web-1     Created                                                             0.1s 
+Attaching to web-1
+web-1  | [nodemon] 3.1.0
+web-1  | [nodemon] to restart at any time, enter `rs`
+web-1  | [nodemon] watching path(s): *.*
+web-1  | [nodemon] watching extensions: js,mjs,cjs,json
+web-1  | [nodemon] starting `node index.js`
+web-1  | Server is listening at http://localhost:3000
+web-1  | Data appended to file successfully
+web-1  | Data appended to file successfully
+web-1  | Data appended to file successfully
+^CGracefully stopping... (press Ctrl+C again to force)
+[+] Stopping 1/1
+ ✔ Container taskcompose-web-1  Stopped                                                                0.2s 
+canceled
+➜  taskCompose git:(main) ✗ docker compose down
+[+] Running 2/0
+ ✔ Container taskcompose-web-1     Removed                                                             0.0s 
+ ✔ Network taskcompose_my-network  Removed                                                             0.0s 
+➜  taskCompose git:(main) ✗ 
