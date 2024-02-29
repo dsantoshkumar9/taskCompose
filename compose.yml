@@ -9,7 +9,7 @@ services:
     networks:
       - my-network
     volumes:
-      - wow:/app
+      - wow:/app/data
     # depends_on:
       # - db
   # db:

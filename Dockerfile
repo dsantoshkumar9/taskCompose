@@ -1,9 +1,9 @@
 ARG NODE_VERSION=20.11.1
 FROM node:${NODE_VERSION}-alpine
 
-WORKDIR /app
+WORKDIR /app/data
 
-COPY . /app
+COPY . /app/data
 
 RUN npm install -g nodemon
 RUN npm install express
@@ -13,4 +13,4 @@ EXPOSE 3000
 
 VOLUME ["/app/data"]
 
-CMD nodemon index.js
+CMD ["nodemon", "index.js"]
