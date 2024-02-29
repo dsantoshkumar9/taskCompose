@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   db:
-    image: mysql:latest
+    image: mysql
     restart: always
     environment:
       MYSQL_DATABASE: 'my_db'
@@ -15,6 +15,12 @@ services:
     volumes:
       # - ./mysql_data:/var/lib/mysql
       - mysql_data1:/var/lib/mysql 
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 20
+
   web:
     build:
       context: .
@@ -26,7 +32,10 @@ services:
     # volumes:
     #   - wow:/app/data
     depends_on:
-      - db
+      db:
+        condition: service_healthy
+    stdin_open: true
+    tty: true
 
 
 networks:

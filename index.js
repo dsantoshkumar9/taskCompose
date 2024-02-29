@@ -7,11 +7,12 @@ const port = 3000;
 app.use(express.json());
 
 const db = mysql.createConnection({
-    host     : 'localhost',
+    host     : 'db',
     user     : 'me',
     password : 'password',
     database : 'my_db'
   });
+  db.connect();  
 
 app.get('/sum', (req, res) => {
     const num1 = parseInt(req.query.num1);
