@@ -7,12 +7,12 @@ COPY . /app
 
 RUN npm install -g nodemon
 RUN npm install express
-RUN npm install mysql
+RUN npm install mysql2
 
 EXPOSE 3000
 
 # VOLUME ["/app/data"]
-FROM mysql
-COPY init.sql /docker-entrypoint-initdb.d
+# FROM mysql
+# COPY init.sql /docker-entrypoint-initdb.d
 
 CMD ["nodemon", "index.js"]
