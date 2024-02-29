@@ -1,5 +1,20 @@
 version: '3.8'
 services:
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'my_db'
+      MYSQL_USER: 'me'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'root_password'
+    ports:
+     - "3306:3306"
+    networks:
+      - my-network
+    volumes:
+      # - ./mysql_data:/var/lib/mysql
+      - mysql_data1:/var/lib/mysql 
   web:
     build:
       context: .
@@ -8,16 +23,15 @@ services:
       - "3000:3000"
     networks:
       - my-network
-    volumes:
-      - wow:/app/data
-    # depends_on:
-      # - db
-  # db:
-  #   image: postgres:latest
-  #   environment:
-  #     POSTGRES_PASSWORD: example
+    # volumes:
+    #   - wow:/app/data
+    depends_on:
+      - db
+
+
 networks:
   my-network:
 
 volumes:
-  wow:
+  # wow:
+  mysql_data1:
